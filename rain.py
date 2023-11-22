@@ -7,9 +7,23 @@ import os
 from os import path
 import sys
 
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-sys.path.append(os.path.realpath('.'))
-sys.path.append('C:/Users/clevy/OneDrive/Python Scripts/CLM_utils')
+if os.environ.get('HOMEPATH')=='\\Users\\clevy':
+    LOCATION='LOCAL'
+else:
+    LOCATION='SERVER'
+
+def isLocal():
+    return (LOCATION=="LOCAL")
+
+
+if isLocal():
+    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+    sys.path.append(os.path.realpath('.'))
+    sys.path.append('C:/Users/clevy/OneDrive/Python Scripts/CLM_utils')
+else:
+    sys.path.append('/home/CyrilFinanceData/FinDataScrap/utils')
+
+print(sys.path)
 import email_CLM
 
 runTime=6
@@ -31,11 +45,8 @@ response.raise_for_status()
 fulldata= response.json()
 data=fulldata['hourly'][:16]
 df=pd.DataFrame(data)
-#df.to_csv('test.csv')
-#df=pd.read_csv('test.csv',index_col=False)
 nested=df['weather']
 exploded=nested.apply(lambda s:str(s[0]))
-#exploded=nested.apply(lambda s:s[1:-1])  #! already a string if saved to csv
 exploded.replace("'",'"',regex=True,inplace=True)
 exploded=exploded.apply(json.loads).apply(pd.Series)
 exploded.columns=['weather_'+c for c in exploded.columns]
