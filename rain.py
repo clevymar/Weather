@@ -23,7 +23,6 @@ if isLocal():
 else:
     sys.path.append('/home/CyrilFinanceData/FinDataScrap/utils')
 
-print(sys.path)
 import email_CLM
 
 runTime=6
