@@ -36,7 +36,7 @@ class SeleniumError(Exception):
     pass
 
 
-def start_driver(headless=True, forCME=False):
+def start_driver(headless=True, forCME=False, webGL=True):
     """
     The function `start_driver` creates a headless Chrome driver with specific options"""
 
@@ -44,6 +44,8 @@ def start_driver(headless=True, forCME=False):
         driver = None
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--no-sandbox")
+        if webGL:
+            chrome_options.add_argument("--enable-unsafe-swiftshader")
         if forCME:
             chrome_options.add_argument(
                 "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
