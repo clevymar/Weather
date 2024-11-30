@@ -1,16 +1,17 @@
 # %%
 import time
 import datetime
-import sys, os
-from os import path
 from collections import namedtuple
 import traceback
+import os, sys
+from loguru import logger
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scrapping import send_email, start_driver
 
 
@@ -42,10 +43,9 @@ def return_info(driver):
         rows = details.find_elements(By.TAG_NAME, "tr")
         dRes["Snow depth"] = [rows[0].text, rows[1].text, rows[-1].text]
     except TimeoutException:
-        print(f"[-] Timeout getting table")
+        logger.error("Timeout getting table")
     except Exception as e:
-        print(f"[-] Error processing: {e}")
-        print(traceback.format_exc())
+        logger.exception(f"Error processing: {e}")
 
     elSnowForecast = driver.find_element(By.CSS_SELECTOR, "ul.SnowChart")
     links = elSnowForecast.find_elements(By.TAG_NAME, "li")
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     try:
         for station, url_end in stations.items():
             t0 = time.perf_counter()
-            print(f"Processing for {station}")
+            logger.info(f"Processing for {station}")
             url = URL_ROOT + url_end + "/"
             try:
                 driver.get(url)
@@ -145,7 +145,7 @@ if __name__ == "__main__":
                     cookieButton = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, COOKIE_ID)))
                     if cookieButton:
                         cookieButton.click()
-                        print("Cookie button clicked")
+                        logger.info("Cookie button clicked")
                         hasCookieBeenClicked = True
                 # driver.execute_script("window.scrollTo(100,document.body.scrollHeight);")
                 accordion = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, BUTTON_XPATH)))
@@ -155,12 +155,11 @@ if __name__ == "__main__":
                     accordion.click()
                 time.sleep(1)
                 dictAll[station] = return_info(driver)
-                print(f"[+]{station} processed in {time.perf_counter()-t0:.0f} seconds")
+                logger.success(f"{station} processed in {time.perf_counter()-t0:.0f} seconds")
             except TimeoutException:
-                print(f"[-] Timeout getting accordion button for {station}")
+                logger.error(f"Timeout getting accordion button for {station}")
             except Exception as e:
-                print(f"[-] Error processing {station}: {e}")
-                print(traceback.format_exc())
+                logger.exception(f"Error processing {station}: {e}")
     finally:
         driver.quit()
     body = html_body(dictAll)
