@@ -1,3 +1,1 @@
-D:
-cd "D:\OneDrive\Python Scripts\Scrapping\Snow"
-pipenv run python snow.py
+uv run snow.py

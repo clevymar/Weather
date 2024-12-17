@@ -1,0 +1,13 @@
+,dt,temp,feels_like,pressure,humidity,dew_point,uvi,clouds,visibility,wind_speed,wind_deg,weather,pop
+0,1615309200,277.8,274.59,1017,57,270.38,0,75,10000,1.15,295,"[{'id': 803, 'main': 'Clouds', 'description': 'broken clouds', 'icon': '04d'}]",0.38
+1,1615312800,276.63,273.83,1018,69,271.68,0,85,10000,0.83,256,"[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",0.32
+2,1615316400,275.71,272.83,1019,77,272.22,0,89,10000,1.07,205,"[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",0.0
+3,1615320000,274.98,272.11,1021,83,272.49,0,94,10000,1.11,198,"[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",0.0
+4,1615323600,274.51,271.79,1022,86,272.51,0,95,10000,0.9,196,"[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",0.03
+5,1615327200,273.81,271.03,1022,90,270.03,0,89,10000,0.97,179,"[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",0.0
+6,1615330800,273.4,270.42,1022,92,269.85,0,80,10000,1.24,170,"[{'id': 803, 'main': 'Clouds', 'description': 'broken clouds', 'icon': '04n'}]",0.0
+7,1615334400,273.07,270.12,1022,93,269.56,0,67,10000,1.16,172,"[{'id': 803, 'main': 'Clouds', 'description': 'broken clouds', 'icon': '04n'}]",0.0
+8,1615338000,272.84,269.8,1022,93,269.25,0,0,10000,1.24,170,"[{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01n'}]",0.0
+9,1615341600,272.6,269.6,1022,93,268.91,0,0,10000,1.14,174,"[{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01n'}]",0.0
+10,1615345200,272.43,269.42,1023,93,268.62,0,0,10000,1.12,181,"[{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01n'}]",0.0
+11,1615348800,272.36,269.26,1023,92,268.33,0,3,10000,1.22,182,"[{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01n'}]",0.0
